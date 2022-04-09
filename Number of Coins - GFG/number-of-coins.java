@@ -39,7 +39,7 @@ int[][] dp;
 	
 
     public int helper(int[] c,int i,int s){
-        if(i>=c.length)return Integer.MAX_VALUE/2;
+        if(i>=c.length)return Integer.MAX_VALUE-1;
         if(s==0)return 0;
         if(dp[i][s]!=-1)return dp[i][s];
         if(c[i]<=s)return dp[i][s]=Math.min(helper(c,i+1,s),1+helper(c,i,s-c[i]));
