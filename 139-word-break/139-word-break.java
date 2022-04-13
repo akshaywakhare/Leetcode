@@ -10,9 +10,14 @@ class Solution {
         if(mp.containsKey(s))return mp.get(s);
         boolean flag=false;
         for(int k=1;k<s.length();k++){
-            boolean left=helper(s.substring(0,k),dict);
+            boolean left=false;
             boolean right=false;
-            if(left) {right=helper(s.substring(k,s.length()),dict);
+            if(mp.containsKey(s.substring(0,k)))left=mp.get(s.substring(0,k));
+            else left=helper(s.substring(0,k),dict);
+            
+            if(left) {
+                                        if(mp.containsKey(s.substring(k,s.length())))left=mp.get(s.substring(k,s.length()));
+                else right=helper(s.substring(k,s.length()),dict);
                        }
             flag=left&&right;
             if(flag)break;
