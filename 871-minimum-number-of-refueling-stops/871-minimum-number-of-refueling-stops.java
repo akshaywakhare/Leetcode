@@ -1,0 +1,18 @@
+class Solution {
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        int n = stations.length;
+    long[] dp = new long[n + 1];
+    dp[0] = startFuel;
+    for (int i = 0; i < n; ++i)
+        for (int t = i; t >= 0 && dp[t] >= stations[i][0]; --t)
+            dp[t + 1] = Math.max(dp[t + 1], dp[t] + (long) stations[i][1]);
+    for (int i = 0; i <= n; ++i)
+        if (dp[i] >= target) return i;
+    return -1;
+    }
+//     public int fun(int i,int[][]s,int t,int f){
+//         if(f>=t)return 0;
+//         if(f<s[i][0])return Integer.MAX_VALUE/2;
+        
+//     }
+}
